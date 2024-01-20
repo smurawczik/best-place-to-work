@@ -8,10 +8,7 @@ import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { validateEmail } from "~/client/helpers/email.helpers";
 
-import {
-  createUser,
-  getUserByEmail,
-} from "~/server/models/users/user.controller";
+import { createUser, getUserByEmail } from "~/server/models/users/user.service";
 import { createUserSession, getUserId } from "~/server/session/session.server";
 import { safeRedirect } from "~/utils";
 

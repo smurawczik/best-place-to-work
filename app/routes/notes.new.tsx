@@ -3,7 +3,7 @@ import { json, redirect } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 
-import { createNote } from "~/server/models/notes/note.controller";
+import { createNote } from "~/server/models/notes/note.service";
 import { requireUserId } from "~/server/session/session.server";
 
 export const action = async ({ request }: ActionFunctionArgs) => {

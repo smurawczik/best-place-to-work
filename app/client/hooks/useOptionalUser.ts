@@ -1,4 +1,4 @@
-import { User } from "~/server/models/users/user.controller";
+import { User } from "~/server/models/users/user.service";
 import { isUser } from "../helpers/user.helpers";
 import { useMatchesData } from "./useMatchesData";
 

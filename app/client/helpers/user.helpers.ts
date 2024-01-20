@@ -1,4 +1,4 @@
-import { User } from "~/server/models/users/user.controller";
+import { User } from "~/server/models/users/user.service";
 
 export function isUser(user: unknown): user is User {
   return (

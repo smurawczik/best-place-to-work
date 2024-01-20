@@ -8,7 +8,7 @@ import {
 } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
-import { deleteNote, getNote } from "~/server/models/notes/note.controller";
+import { deleteNote, getNote } from "~/server/models/notes/note.service";
 import { requireUserId } from "~/server/session/session.server";
 
 export const loader = async ({ params, request }: LoaderFunctionArgs) => {

@@ -7,11 +7,17 @@ async function seed() {
   const email = "rachel@remix.run";
 
   // cleanup the existing database
-  await prisma.user.delete({ where: { email } }).catch(() => {
+  await prisma.user.deleteMany().catch(() => {
+    // no worries if it doesn't exist yet
+  });
+
+  // cleanup the existing database
+  await prisma.note.deleteMany().catch(() => {
     // no worries if it doesn't exist yet
   });
 
   const hashedPassword = await bcrypt.hash("racheliscool", 10);
+  const hashedPasswordMe = await bcrypt.hash("aaaaaaaa", 10);
 
   const user = await prisma.user.create({
     data: {
@@ -19,6 +25,17 @@ async function seed() {
       password: {
         create: {
           hash: hashedPassword,
+        },
+      },
+    },
+  });
+
+  const me = await prisma.user.create({
+    data: {
+      email: "sebastian.murawczik@gmail.com",
+      password: {
+        create: {
+          hash: hashedPasswordMe,
         },
       },
     },
@@ -36,7 +53,7 @@ async function seed() {
     data: {
       title: "My second note",
       body: "Hello, world!",
-      userId: user.id,
+      userId: me.id,
     },
   });
 
