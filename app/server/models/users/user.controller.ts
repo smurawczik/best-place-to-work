@@ -1,7 +1,7 @@
 import type { Password, User } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
-import { prisma } from "~/db.server";
+import { prisma } from "~/server/database/db.server";
 
 export type { User } from "@prisma/client";
 
@@ -34,7 +34,7 @@ export async function deleteUserByEmail(email: User["email"]) {
 
 export async function verifyLogin(
   email: User["email"],
-  password: Password["hash"],
+  password: Password["hash"]
 ) {
   const userWithPassword = await prisma.user.findUnique({
     where: { email },
@@ -49,7 +49,7 @@ export async function verifyLogin(
 
   const isValid = await bcrypt.compare(
     password,
-    userWithPassword.password.hash,
+    userWithPassword.password.hash
   );
 
   if (!isValid) {

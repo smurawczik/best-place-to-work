@@ -3,8 +3,8 @@ import { json, redirect } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 
-import { createNote } from "~/models/note.server";
-import { requireUserId } from "~/session.server";
+import { createNote } from "~/server/models/notes/note.controller";
+import { requireUserId } from "~/server/session/session.server";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const userId = await requireUserId(request);
@@ -16,14 +16,14 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (typeof title !== "string" || title.length === 0) {
     return json(
       { errors: { body: null, title: "Title is required" } },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
   if (typeof body !== "string" || body.length === 0) {
     return json(
       { errors: { body: "Body is required", title: null } },
-      { status: 400 },
+      { status: 400 }
     );
   }
 

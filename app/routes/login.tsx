@@ -7,9 +7,10 @@ import { json, redirect } from "@remix-run/node";
 import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 
-import { verifyLogin } from "~/models/user.server";
-import { createUserSession, getUserId } from "~/session.server";
-import { safeRedirect, validateEmail } from "~/utils";
+import { validateEmail } from "~/client/helpers/email.helpers";
+import { verifyLogin } from "~/server/models/users/user.controller";
+import { createUserSession, getUserId } from "~/server/session/session.server";
+import { safeRedirect } from "~/utils";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await getUserId(request);
@@ -27,21 +28,21 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (!validateEmail(email)) {
     return json(
       { errors: { email: "Email is invalid", password: null } },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
   if (typeof password !== "string" || password.length === 0) {
     return json(
       { errors: { email: null, password: "Password is required" } },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
   if (password.length < 8) {
     return json(
       { errors: { email: null, password: "Password is too short" } },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
@@ -50,7 +51,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (!user) {
     return json(
       { errors: { email: "Invalid email or password", password: null } },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
