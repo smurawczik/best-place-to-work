@@ -1,5 +1,7 @@
 import { User } from "~/server/models/users/user.service";
+
 import { isUser } from "../helpers/user.helpers";
+
 import { useMatchesData } from "./useMatchesData";
 
 export function useOptionalUser(): User | undefined {
