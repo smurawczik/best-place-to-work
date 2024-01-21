@@ -11,15 +11,10 @@ async function seed() {
     // no worries if it doesn't exist yet
   });
 
-  // cleanup the existing database
-  await prisma.note.deleteMany().catch(() => {
-    // no worries if it doesn't exist yet
-  });
-
   const hashedPassword = await bcrypt.hash("racheliscool", 10);
   const hashedPasswordMe = await bcrypt.hash("aaaaaaaa", 10);
 
-  const user = await prisma.user.create({
+  await prisma.user.create({
     data: {
       email,
       password: {
@@ -30,7 +25,7 @@ async function seed() {
     },
   });
 
-  const me = await prisma.user.create({
+  const seba = await prisma.user.create({
     data: {
       email: "sebastian.murawczik@gmail.com",
       password: {
@@ -41,19 +36,42 @@ async function seed() {
     },
   });
 
-  await prisma.note.create({
+  await prisma.salary.create({
     data: {
-      title: "My first note",
-      body: "Hello, world!",
-      userId: user.id,
-    },
-  });
-
-  await prisma.note.create({
-    data: {
-      title: "My second note",
-      body: "Hello, world!",
-      userId: me.id,
+      amount: 10000,
+      currency: {
+        create: {
+          name: "EUR",
+          code: "EUR",
+        },
+      },
+      user: {
+        connect: {
+          id: seba.id,
+        },
+      },
+      category: "a",
+      city: {
+        create: {
+          name: "Berlin",
+          country: {
+            create: {
+              name: "Germany",
+            },
+          },
+        },
+      },
+      remote: false,
+      country: {
+        create: {
+          name: "Germany",
+        },
+      },
+      company: {
+        create: {
+          name: "company",
+        },
+      },
     },
   });
 

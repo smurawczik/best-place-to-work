@@ -13,24 +13,14 @@ model User {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   password  Password?
-  notes     Note[]
   reviews   Review[]
+  salaries  Salary[]
 }
 
 model Password {
   hash   String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId String @unique
-}
-
-model Note {
-  id        String   @id @default(uuid())
-  title     String
-  body      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId    String
 }
 
 model Review {
@@ -46,7 +36,60 @@ model Review {
 }
 
 model Company {
-  id      String   @id @default(uuid())
-  name    String
-  reviews Review[]
+  id       String   @id @default(uuid())
+  name     String
+  reviews  Review[]
+  salaries Salary[]
+  jobs     Job[]
+}
+
+model Salary {
+  id         String   @id @default(uuid())
+  amount     Float
+  currency   Currency @relation(fields: [currencyId], references: [id])
+  currencyId String
+  category   String
+  country    Country  @relation(fields: [countryId], references: [id])
+  countryId  String
+  city       City     @relation(fields: [cityId], references: [id])
+  cityId     String
+  remote     Boolean
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  userId     String?
+  company    Company  @relation(fields: [companyId], references: [id])
+  companyId  String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Currency {
+  id       String   @id @default(uuid())
+  code     String   @unique
+  name     String
+  salaries Salary[]
+}
+
+model Job {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  company     Company? @relation(fields: [companyId], references: [id])
+  companyId   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Country {
+  id       String   @id @default(uuid())
+  name     String
+  cities   City[]
+  salaries Salary[]
+}
+
+model City {
+  id        String   @id @default(uuid())
+  name      String
+  country   Country  @relation(fields: [countryId], references: [id])
+  countryId String
+  salaries  Salary[]
 }

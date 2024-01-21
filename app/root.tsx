@@ -42,7 +42,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="h-full">
+      <body className="h-full dark:bg-slate-900 text-white">
         {shouldShowHeader ? <Header /> : null}
         <Outlet />
         <ScrollRestoration />
@@ -63,7 +63,7 @@ export function ErrorBoundary() {
           <Meta />
           <Links />
         </head>
-        <body>
+        <body className="dark:bg-slate-900 text-white">
           <main className="dark:bg-slate-900 relative min-h-screen sm:flex sm:items-center sm:justify-center">
             <h2 className="text-3xl text-center text-white">
               Oh no, something went wrong! <br />
