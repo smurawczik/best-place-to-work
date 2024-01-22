@@ -1,4 +1,8 @@
-import { Outlet } from "@remix-run/react";
+import { MetaFunction, Outlet } from "@remix-run/react";
+
+export const meta: MetaFunction = () => {
+  return [{ title: "BPTW? - Salaries" }];
+};
 
 export default function SalariesPage() {
   return (

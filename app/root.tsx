@@ -1,3 +1,4 @@
+import { NextUIProvider } from "@nextui-org/react";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
@@ -35,19 +36,22 @@ export default function App() {
   );
 
   return (
-    <html lang="en" className="h-full dark">
+    <html lang="en" className="h-full">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <title></title>
       </head>
-      <body className="h-full dark:bg-slate-900 text-white">
-        {shouldShowHeader ? <Header /> : null}
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+      <body className="h-full bg-stone-200 text-slate-600">
+        <NextUIProvider className="h-full">
+          {shouldShowHeader ? <Header /> : null}
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </NextUIProvider>
       </body>
     </html>
   );
@@ -57,24 +61,26 @@ export function ErrorBoundary() {
   const error = useRouteError();
   if (isRouteErrorResponse(error)) {
     return (
-      <html lang="en" className="dark">
+      <html lang="en">
         <head>
           <title>Oh no!</title>
           <Meta />
           <Links />
         </head>
-        <body className="dark:bg-slate-900 text-white">
-          <main className="dark:bg-slate-900 relative min-h-screen sm:flex sm:items-center sm:justify-center">
-            <h2 className="text-3xl text-center text-white">
-              Oh no, something went wrong! <br />
-              <small className="text-xs">({error?.data})</small>
-              <br />
-              <br />
-              <Link to="/" className="text-blue-500">
-                Go back home
-              </Link>
-            </h2>
-          </main>
+        <body className="bg-stone-200 text-slate-600">
+          <NextUIProvider className="h-full">
+            <main className="relative min-h-screen sm:flex sm:items-center sm:justify-center">
+              <h2 className="text-3xl text-center">
+                Oh no, something went wrong! <br />
+                <small className="text-xs">({error?.data})</small>
+                <br />
+                <br />
+                <Link to="/" className="text-blue-500">
+                  Go back home
+                </Link>
+              </h2>
+            </main>
+          </NextUIProvider>
           <Scripts />
         </body>
       </html>

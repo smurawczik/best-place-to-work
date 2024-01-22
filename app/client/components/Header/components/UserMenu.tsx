@@ -1,8 +1,7 @@
+import { Button } from "@nextui-org/react";
 import { Form, Link } from "@remix-run/react";
 
 import { useOptionalUser } from "~/client/hooks/useOptionalUser";
-
-import { Button } from "../../Button";
 
 export const UserMenu = () => {
   const user = useOptionalUser();
@@ -11,10 +10,14 @@ export const UserMenu = () => {
     return (
       <div className="flex gap-2">
         <Link to="/login">
-          <Button>Sign in</Button>
+          <Button size="sm" radius="sm" color="primary">
+            Sign in
+          </Button>
         </Link>
         <Link to="/join">
-          <Button>Register</Button>
+          <Button size="sm" radius="sm" color="primary">
+            Register
+          </Button>
         </Link>
       </div>
     );
@@ -22,7 +25,9 @@ export const UserMenu = () => {
 
   return (
     <Form action="/logout" method="post">
-      <Button>Logout</Button>
+      <Button color="default" size="sm" radius="sm" type="submit">
+        Logout
+      </Button>
     </Form>
   );
 };

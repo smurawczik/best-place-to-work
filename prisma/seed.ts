@@ -36,6 +36,13 @@ async function seed() {
     },
   });
 
+  await prisma.currency.create({
+    data: {
+      name: "USD",
+      code: "USD",
+    },
+  });
+
   await prisma.salary.create({
     data: {
       amount: 10000,
