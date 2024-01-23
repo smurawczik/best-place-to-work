@@ -51,6 +51,8 @@ model Salary {
   category   String
   country    Country  @relation(fields: [countryId], references: [id])
   countryId  String
+  state      State    @relation(fields: [stateId], references: [id])
+  stateId    String
   city       City     @relation(fields: [cityId], references: [id])
   cityId     String
   remote     Boolean
@@ -66,6 +68,7 @@ model Currency {
   id       String   @id @default(uuid())
   code     String   @unique
   name     String
+  symb     String   @default("$") // Add currency symbol
   salaries Salary[]
 }
 
@@ -82,8 +85,19 @@ model Job {
 model Country {
   id       String   @id @default(uuid())
   name     String
+  emoji    String
+  states   State[]
   cities   City[]
   salaries Salary[]
+}
+
+model State {
+  id        String   @id @default(uuid())
+  name      String
+  country   Country  @relation(fields: [countryId], references: [id])
+  countryId String
+  salaries  Salary[]
+  City      City[]
 }
 
 model City {
@@ -91,5 +105,7 @@ model City {
   name      String
   country   Country  @relation(fields: [countryId], references: [id])
   countryId String
+  state     State    @relation(fields: [stateId], references: [id])
+  stateId   String
   salaries  Salary[]
 }
