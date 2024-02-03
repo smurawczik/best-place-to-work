@@ -16,9 +16,14 @@ export const Header = () => {
               Jobs
             </Link>
           </Box>
-          <Link color="white" to="/login">
-            Login
-          </Link>
+          <Box gap={1} display="flex">
+            <Link color="white" to="/register">
+              Register
+            </Link>
+            <Link color="white" to="/login">
+              Login
+            </Link>
+          </Box>
         </Box>
       </Toolbar>
     </AppBar>

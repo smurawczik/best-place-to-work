@@ -6,6 +6,8 @@ import {
 import { Home } from "../../../pages/Home";
 import { Layout } from "../../Layout/";
 import { Jobs } from "../../../pages/Jobs";
+import { Login } from "../../../pages/Login/Index";
+import { Register } from "../../../pages/Register/Index";
 
 export const Routes = () => {
   return (
@@ -15,6 +17,8 @@ export const Routes = () => {
           <Route index element={<Home />} />
           <Route path="jobs" element={<Jobs />} />
         </Route>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </BrowserRoutes>
     </BrowserRouter>
   );
