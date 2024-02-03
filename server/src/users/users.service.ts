@@ -19,6 +19,24 @@ export class UsersService {
     });
   }
 
+  findByEmail(email: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        email,
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        password: {
+          select: {
+            password: true,
+          },
+        },
+      },
+    });
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} user`;
   }
