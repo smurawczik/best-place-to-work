@@ -6,15 +6,10 @@ import { PrismaService } from 'src/services/db.service';
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  create(userDto: User, password: string) {
+  create(userDto: User) {
     this.prisma.user.create({
       data: {
         ...userDto,
-        password: {
-          create: {
-            password,
-          },
-        },
       },
     });
   }
@@ -27,12 +22,9 @@ export class UsersService {
       select: {
         id: true,
         email: true,
-        name: true,
-        password: {
-          select: {
-            password: true,
-          },
-        },
+        firstName: true,
+        lastName: true,
+        password: true,
       },
     });
   }

@@ -1,13 +1,36 @@
 import { createTheme } from "@mui/material";
-import { green, pink } from "@mui/material/colors";
+
+declare module "@mui/material/styles" {
+  interface Theme {
+    accent: {
+      main: string;
+    };
+  }
+  interface ThemeOptions {
+    accent?: {
+      main?: string;
+    };
+  }
+}
 
 export const theme = createTheme({
   palette: {
+    background: {
+      default: "#4B3869",
+      paper: "#664E88",
+    },
+    text: {
+      primary: "#A9E4D7",
+      secondary: "#F5F5F5",
+    },
     primary: {
-      main: pink[200],
+      main: "#63B4B8",
     },
     secondary: {
-      main: green[500],
+      main: "#A9E4D7",
     },
+  },
+  accent: {
+    main: "#F6B17A",
   },
 });

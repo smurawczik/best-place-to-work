@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, styled, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { authAPI } from "../../../api/auth";
 
 const StyledForm = styled("form")({
   display: "flex",
@@ -12,11 +13,11 @@ const StyledForm = styled("form")({
 });
 
 export const LoginForm = () => {
-  const [username, setUsername] = useState("");
+  const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
 
@@ -28,21 +29,29 @@ export const LoginForm = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Perform login logic here
+    try {
+      const loginResponse = await authAPI.login(email, password);
+      console.log(loginResponse);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <StyledForm onSubmit={handleSubmit}>
       <TextField
-        label="Username"
-        value={username}
-        onChange={handleUsernameChange}
+        label="Email"
+        value={email}
+        onChange={handleEmailChange}
         fullWidth
         margin="normal"
         color="secondary"
         size="small"
+        type="email"
+        required
       />
       <TextField
         label="Password"
@@ -53,9 +62,14 @@ export const LoginForm = () => {
         margin="normal"
         color="secondary"
         size="small"
+        required
         InputProps={{
           endAdornment: (
-            <InputAdornment position="end" style={{ cursor: "pointer" }}>
+            <InputAdornment
+              position="end"
+              style={{ cursor: "pointer" }}
+              sx={{ color: (theme) => theme.palette.primary.light }}
+            >
               {showPassword ? (
                 <VisibilityOff onClick={handleTogglePasswordVisibility} />
               ) : (
@@ -69,7 +83,7 @@ export const LoginForm = () => {
         type="submit"
         variant="contained"
         disableElevation
-        color="secondary"
+        color="primary"
       >
         Login
       </Button>

@@ -3,6 +3,7 @@ import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
@@ -18,9 +19,10 @@ export class AuthService {
     @Res({ passthrough: true }) response: Response,
   ) {
     const user = await this.usersService.findByEmail(email);
-    if (user?.password?.password !== pass) {
+    if (!user || !bcrypt.compare(pass, user?.password)) {
       throw new UnauthorizedException();
     }
+
     const payload = { sub: user.id, email: user.email };
 
     const tokenCookieName = this.configService.get<string>('TOKEN_COOKIE_NAME');
@@ -38,6 +40,9 @@ export class AuthService {
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
     });
 
-    return user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...result } = user;
+
+    return result;
   }
 }

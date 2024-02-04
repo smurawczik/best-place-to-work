@@ -1,7 +1,17 @@
+import { Box, styled } from "@mui/material";
+
+const StyledTitle = styled("h1")(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  textAlign: "center",
+  fontWeight: 200,
+}));
+
 export const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Box maxWidth={600}>
+      <StyledTitle>
+        Find your next job by seeing and comparing salaries all around the glove
+      </StyledTitle>
+    </Box>
   );
 };
