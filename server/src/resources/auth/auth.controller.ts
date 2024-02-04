@@ -12,6 +12,7 @@ import {
 import { AuthService } from './auth.service';
 import { Response } from 'express';
 import { AuthGuard } from './auth.guard';
+import { DefaultSuccessResponse } from 'src/utils/http.utils';
 
 @Controller('auth')
 export class AuthController {
@@ -28,6 +29,13 @@ export class AuthController {
       signInDto.password,
       response,
     );
+  }
+
+  @UseGuards(AuthGuard)
+  @Post('logout')
+  logout(@Res({ passthrough: true }) response: Response) {
+    this.authService.logout(response);
+    return DefaultSuccessResponse;
   }
 
   @UseGuards(AuthGuard)

@@ -45,4 +45,11 @@ export class AuthService {
 
     return result;
   }
+
+  logout(@Res({ passthrough: true }) response: Response) {
+    const tokenCookieName = this.configService.get<string>('TOKEN_COOKIE_NAME');
+    if (tokenCookieName) {
+      response.clearCookie(tokenCookieName);
+    }
+  }
 }
