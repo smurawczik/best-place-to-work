@@ -11,13 +11,16 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "./theme/index.ts";
+import { Authentication } from "./components/Authentication/index.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <CssBaseline />
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <Routes />
+        <Authentication>
+          <Routes />
+        </Authentication>
       </Provider>
     </ThemeProvider>
   </React.StrictMode>

@@ -1,3 +1,4 @@
+import { UserState } from "../redux/user/user.slice.types";
 import { axiosInstance } from "./instance";
 
 export const authAPI = {
@@ -11,6 +12,6 @@ export const authAPI = {
     axiosInstance.post("/auth/logout");
   },
   profile: async () => {
-    axiosInstance.get("/auth/profile");
+    return axiosInstance.get<UserState["user"]>("/auth/profile");
   },
 };

@@ -41,6 +41,9 @@ export class AuthController {
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req: Record<string, any>) {
-    return req.user;
+    if (!req.user) {
+      throw new Error('User not found');
+    }
+    return this.authService.profile(req.user.id);
   }
 }

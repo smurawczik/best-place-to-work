@@ -1,8 +1,10 @@
 export interface UserState {
   isAuthenticated: boolean;
-  user: {
+  profile: {
     id: string;
-    username: string;
+    firstName: string;
+    lastName: string;
     email: string;
   } | null;
+  status: "idle" | "loading" | "succeeded" | "failed";
 }

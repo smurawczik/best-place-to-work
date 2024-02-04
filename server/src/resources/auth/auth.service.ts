@@ -23,7 +23,7 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    const payload = { sub: user.id, email: user.email };
+    const payload = { id: user.id, email: user.email };
 
     const tokenCookieName = this.configService.get<string>('TOKEN_COOKIE_NAME');
 
@@ -51,5 +51,9 @@ export class AuthService {
     if (tokenCookieName) {
       response.clearCookie(tokenCookieName);
     }
+  }
+
+  profile(userId: string) {
+    return this.usersService.findOne(userId);
   }
 }

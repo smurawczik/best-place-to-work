@@ -31,10 +31,11 @@ export const LoginForm = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Perform login logic here
     try {
       const loginResponse = await authAPI.login(email, password);
-      console.log(loginResponse);
+      if (loginResponse.status === 200) {
+        window.location.href = "/";
+      }
     } catch (error) {
       console.error(error);
     }
