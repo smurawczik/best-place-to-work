@@ -11,9 +11,55 @@ datasource db {
 }
 
 model User {
-  id        String @id @default(uuid())
-  email     String @unique
-  firstName String
-  lastName  String
-  password  String
+  id            String          @id @default(uuid())
+  email         String          @unique
+  firstName     String
+  lastName      String
+  password      String
+  CompanyReview CompanyReview[]
+  JobReview     JobReview[]
+}
+
+model CompanyReview {
+  id        String   @id @default(uuid())
+  companyId String
+  userId    String
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  company   Company  @relation(fields: [companyId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model JobReview {
+  id        String   @id @default(uuid())
+  jobId     String
+  userId    String
+  salary    Int
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  job       Job      @relation(fields: [jobId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Company {
+  id          String          @id @default(uuid())
+  name        String
+  description String?
+  reviews     CompanyReview[]
+  jobs        Job[]
+}
+
+model Job {
+  id          String      @id @default(uuid())
+  title       String
+  description String?
+  salary      Int
+  location    String?
+  reviews     JobReview[]
+  company     Company?    @relation(fields: [companyId], references: [id])
+  companyId   String?
 }
