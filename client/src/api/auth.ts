@@ -12,6 +12,6 @@ export const authAPI = {
     axiosInstance.post("/auth/logout");
   },
   profile: async () => {
-    return axiosInstance.get<UserState["user"]>("/auth/profile");
+    return axiosInstance.get<UserState["profile"]>("/auth/profile");
   },
 };

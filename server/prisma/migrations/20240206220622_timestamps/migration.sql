@@ -6,6 +6,8 @@ CREATE TABLE "User" (
     "lastName" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "roleId" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
     CONSTRAINT "User_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -30,7 +32,9 @@ CREATE TABLE "Company" (
     "industry" TEXT,
     "website" TEXT,
     "foundedYear" INTEGER,
-    "employees" INTEGER
+    "employees" INTEGER,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
 );
 
 -- CreateTable
@@ -40,6 +44,8 @@ CREATE TABLE "Job" (
     "description" TEXT,
     "salary" INTEGER NOT NULL,
     "location" TEXT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
     "companyId" TEXT,
     CONSTRAINT "Job_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "Company" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );

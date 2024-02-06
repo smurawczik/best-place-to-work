@@ -5,8 +5,11 @@ const prisma = new PrismaClient();
 
 async function main() {
   try {
-    await prisma.role.deleteMany({});
+    await prisma.job.deleteMany({});
+    await prisma.companyReview.deleteMany({});
+    await prisma.company.deleteMany({});
     await prisma.user.deleteMany({});
+    await prisma.role.deleteMany({});
   } catch (e) {
     console.error(e);
   }
@@ -55,7 +58,77 @@ async function main() {
     },
   });
 
-  console.log({ job1, job2 });
+  const job3 = await prisma.job.create({
+    data: {
+      title: 'Data Analyst',
+      description: 'Analyze and interpret complex data sets',
+      salary: 75000,
+      location: 'Chicago',
+      company: {
+        connect: {
+          id: company.id,
+        },
+      },
+    },
+  });
+
+  const job4 = await prisma.job.create({
+    data: {
+      title: 'Marketing Specialist',
+      description: 'Develop and execute marketing campaigns',
+      salary: 90000,
+      location: 'Los Angeles',
+      company: {
+        connect: {
+          id: company.id,
+        },
+      },
+    },
+  });
+
+  const job5 = await prisma.job.create({
+    data: {
+      title: 'Graphic Designer',
+      description: 'Create visual concepts and designs',
+      salary: 60000,
+      location: 'Seattle',
+      company: {
+        connect: {
+          id: company.id,
+        },
+      },
+    },
+  });
+
+  const job6 = await prisma.job.create({
+    data: {
+      title: 'HR Manager',
+      description: 'Oversee human resources operations',
+      salary: 110000,
+      location: 'Austin',
+      company: {
+        connect: {
+          id: company.id,
+        },
+      },
+    },
+  });
+
+  const job7 = await prisma.job.create({
+    data: {
+      title: 'Sales Representative',
+      description: 'Promote and sell company products',
+      salary: 80000,
+      location: 'Miami',
+      company: {
+        connect: {
+          id: company.id,
+        },
+      },
+    },
+  });
+
+  console.log({ job1, job2, job3, job4, job5, job6, job7 });
 
   const sebas = await prisma.user.upsert({
     where: { email: 'alice@prisma.io' },

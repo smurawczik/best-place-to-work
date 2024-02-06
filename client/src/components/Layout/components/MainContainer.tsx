@@ -5,4 +5,6 @@ export const MainContainer = styled("main")(() => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  height: "100%",
+  overflow: "scroll",
 }));

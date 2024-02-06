@@ -1,7 +1,8 @@
+import { JobList } from "../../components/Jobs";
+import { useGetJobs } from "../../hooks/useGetJobs";
+
 export const Jobs = () => {
-  return (
-    <div>
-      <h1>Jobs</h1>
-    </div>
-  );
+  useGetJobs();
+
+  return <JobList />;
 };
