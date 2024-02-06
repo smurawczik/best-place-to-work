@@ -5,13 +5,14 @@ import Toolbar from "@mui/material/Toolbar";
 import { useAppSelector } from "../../../redux/store.hooks";
 import { LinkButton } from "../../UI/LinkButton";
 import { Logout } from "./Logout";
+import { userSelectors } from "../../../redux/user/user.slice.selectors";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
 export const Header = () => {
-  const userStatus = useAppSelector((state) => state.user.status);
+  const userStatus = useAppSelector(userSelectors.selectStatus);
   const authSuccess = userStatus === "succeeded";
   const authFailed = userStatus === "failed";
 

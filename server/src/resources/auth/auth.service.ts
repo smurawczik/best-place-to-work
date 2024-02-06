@@ -53,7 +53,13 @@ export class AuthService {
     }
   }
 
-  profile(userId: string) {
-    return this.usersService.findOne(userId);
+  async profile(userId: string) {
+    const currentUser = await this.usersService.findOne(userId);
+
+    if (!currentUser) {
+      throw new UnauthorizedException();
+    }
+
+    return currentUser;
   }
 }

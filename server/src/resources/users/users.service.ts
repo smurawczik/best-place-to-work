@@ -40,6 +40,7 @@ export class UsersService {
           email: true,
           firstName: true,
           lastName: true,
+          role: true,
         },
       });
     } catch (error) {
