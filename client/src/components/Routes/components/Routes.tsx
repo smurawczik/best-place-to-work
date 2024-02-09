@@ -3,12 +3,12 @@ import {
   Route,
   Routes as BrowserRoutes,
 } from "react-router-dom";
-import { HomePage } from "../../../pages/Home";
+import { HomePage } from "../../../pages/Home/HomePage";
 import { Layout } from "../../Layout/";
-import { JobsPage } from "../../../pages/Jobs";
-import { LoginPage } from "../../../pages/Login/Index";
-import { RegisterPage } from "../../../pages/Register/Index";
-import { JobPage } from "../../../pages/JobPage";
+import { JobsPage } from "../../../pages/Jobs/JobsPage";
+import { LoginPage } from "../../../pages/Login/LoginPage";
+import { RegisterPage } from "../../../pages/Register/RegisterPage";
+import { JobPage } from "../../../pages/JobPage/JobPage";
 
 export const Routes = () => {
   return (
