@@ -9,6 +9,7 @@ import { JobsPage } from "../../../pages/Jobs/JobsPage";
 import { LoginPage } from "../../../pages/Login/LoginPage";
 import { RegisterPage } from "../../../pages/Register/RegisterPage";
 import { JobPage } from "../../../pages/JobPage/JobPage";
+import { CompanyReviewsPage } from "../../../pages/CompanyReviewsPage/CompanyReviewsPage";
 
 export const Routes = () => {
   return (
@@ -18,6 +19,7 @@ export const Routes = () => {
           <Route index element={<HomePage />} />
           <Route path="jobs" element={<JobsPage />} />
           <Route path="jobs/:id" element={<JobPage />} />
+          <Route path="reviews/:id" element={<CompanyReviewsPage />} />
         </Route>
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />

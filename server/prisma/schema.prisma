@@ -22,7 +22,7 @@ model User {
 
 model CompanyReview {
   id        String   @id @default(uuid())
-  rating    Int
+  rating    Float
   comment   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

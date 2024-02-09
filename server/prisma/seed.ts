@@ -163,6 +163,35 @@ async function main() {
     },
   });
 
+  const companyReview2 = await prisma.companyReview.create({
+    data: {
+      comment: 'Amazing work environment',
+      rating: 4,
+      user: { connect: { id: sebas.id } },
+      company: { connect: { id: company.id } },
+    },
+  });
+
+  const companyReview3 = await prisma.companyReview.create({
+    data: {
+      comment: 'Good company culture',
+      rating: 3,
+      user: { connect: { id: sebas.id } },
+      company: { connect: { id: company.id } },
+    },
+  });
+
+  const companyReview4 = await prisma.companyReview.create({
+    data: {
+      comment: 'Needs improvement in management',
+      rating: 2,
+      user: { connect: { id: sebas.id } },
+      company: { connect: { id: company.id } },
+    },
+  });
+
+  console.log({ companyReview2, companyReview3, companyReview4 });
+
   console.log({ company, companyReview });
   console.log({ companyRole, userRole });
   console.log({ sebas });

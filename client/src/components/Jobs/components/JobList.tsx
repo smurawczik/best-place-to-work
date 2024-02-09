@@ -11,7 +11,7 @@ export const JobList = () => {
 
   return (
     <>
-      <StyledJobListTitle>Job List</StyledJobListTitle>
+      <StyledJobListTitle>Jobs</StyledJobListTitle>
       <Grid width="100%" container spacing={1}>
         {jobList.map((job) => (
           <Grid key={job.id} item xs={4}>
