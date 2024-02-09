@@ -6,7 +6,7 @@ const StyledTitle = styled("h1")(({ theme }) => ({
   fontWeight: 200,
 }));
 
-export const Home = () => {
+export const HomePage = () => {
   return (
     <Box maxWidth={600}>
       <StyledTitle>

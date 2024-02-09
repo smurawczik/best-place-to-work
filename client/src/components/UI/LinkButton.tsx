@@ -16,7 +16,9 @@ export const LinkButton: FC<LinkButtonProps> = ({
   return (
     <Button
       {...buttonProps}
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation();
+
         navigate(href);
       }}
     >

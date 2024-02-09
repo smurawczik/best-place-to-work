@@ -17,7 +17,7 @@ export const Header = () => {
   const authFailed = userStatus === "failed";
 
   return (
-    <StyledAppBar position="static">
+    <StyledAppBar position="static" sx={{ zIndex: 2 }}>
       <Toolbar variant="dense">
         <Box flexGrow={1} justifyContent="space-between" display="flex">
           <Box gap={1} display="flex">
@@ -26,6 +26,10 @@ export const Header = () => {
             </LinkButton>
             <LinkButton color="secondary" href="/jobs">
               Jobs
+            </LinkButton>
+
+            <LinkButton color="secondary" href="/reviews">
+              Reviews
             </LinkButton>
           </Box>
           <Box gap={1} display="flex">

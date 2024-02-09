@@ -29,4 +29,9 @@ export class JobsController {
   getLatest() {
     return this.jobsService.getLatest();
   }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.jobsService.findOne(id);
+  }
 }

@@ -7,6 +7,7 @@ const initialState: JobsState = {
   filter: {
     search: "",
   },
+  selectedJob: null,
 };
 
 export const jobsSlice = createSlice({
@@ -16,10 +17,16 @@ export const jobsSlice = createSlice({
     setJobList: (state, action: PayloadAction<JobsState["list"]>) => {
       state.list = action.payload;
     },
+    setSelectedJob: (
+      state,
+      action: PayloadAction<JobsState["selectedJob"]>
+    ) => {
+      state.selectedJob = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setJobList } = jobsSlice.actions;
+export const { setJobList, setSelectedJob } = jobsSlice.actions;
 
 export default jobsSlice.reducer;

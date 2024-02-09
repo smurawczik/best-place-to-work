@@ -29,4 +29,5 @@ export interface JobFilter {
 export interface JobsState {
   list: Job[];
   filter: JobFilter;
+  selectedJob: Job | null;
 }

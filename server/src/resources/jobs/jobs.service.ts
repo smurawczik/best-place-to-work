@@ -16,8 +16,22 @@ export class JobsService {
     return `This action returns all jobs`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} job`;
+  findOne(id: string) {
+    return this.prisma.job.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        createdAt: true,
+        updatedAt: true,
+        company: true,
+        salary: true,
+        location: true,
+      },
+    });
   }
 
   update(id: number) {

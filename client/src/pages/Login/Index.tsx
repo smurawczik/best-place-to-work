@@ -1,5 +1,5 @@
 import { LoginForm } from "../../components/LoginForm";
 
-export const Login = () => {
+export const LoginPage = () => {
   return <LoginForm />;
 };

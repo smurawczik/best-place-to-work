@@ -6,5 +6,6 @@ export const MainContainer = styled("main")(() => ({
   flexDirection: "column",
   alignItems: "center",
   height: "100%",
-  overflow: "scroll",
+  overflow: "auto",
+  paddingBottom: "1rem",
 }));

@@ -1,18 +1,24 @@
-import Box from "@mui/material/Box";
+import { Grid, styled } from "@mui/material";
 import { useAppSelector } from "../../../redux/store.hooks";
 import { JobCard } from "./JobCard";
+
+const StyledJobListTitle = styled("h1")(() => ({
+  textAlign: "center",
+}));
 
 export const JobList = () => {
   const jobList = useAppSelector((state) => state.jobs.list);
 
   return (
     <>
-      <h1>Job List</h1>
-      <Box width="100%" gap={1.5} display="flex" px={1} flexDirection="column">
+      <StyledJobListTitle>Job List</StyledJobListTitle>
+      <Grid width="100%" container spacing={1}>
         {jobList.map((job) => (
-          <JobCard key={job.id} {...job} />
+          <Grid key={job.id} item xs={4}>
+            <JobCard {...job} />
+          </Grid>
         ))}
-      </Box>
+      </Grid>
     </>
   );
 };
