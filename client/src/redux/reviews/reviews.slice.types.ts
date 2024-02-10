@@ -1,7 +1,7 @@
 import { Company } from "../jobs/jobs.slice.types";
 
 export type ReviewResponse = {
-  company: CompanyReview;
+  company: Company;
   rating: number;
 };
 

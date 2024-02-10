@@ -44,7 +44,7 @@ export class JobsService {
 
   async getLatest() {
     return this.prisma.job.findMany({
-      take: 5,
+      take: 10,
       orderBy: {
         createdAt: 'desc',
       },

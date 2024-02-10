@@ -194,6 +194,134 @@ async function main() {
     },
   });
 
+  const company2 = await prisma.company.create({
+    data: {
+      name: 'Worst Place to Work',
+      description:
+        'A company dedicated to creating the worst working environment',
+      website: 'https://www.worstplacetowork.com',
+      employees: 20,
+      foundedYear: 2015,
+      industry: 'Technology',
+    },
+  });
+
+  const job8 = await prisma.job.create({
+    data: {
+      title: 'Quality Assurance Engineer',
+      description: 'Ensure software quality through testing',
+      salary: 70000,
+      location: 'San Francisco',
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  const job9 = await prisma.job.create({
+    data: {
+      title: 'Customer Support Representative',
+      description: 'Handle customer inquiries and issues',
+      salary: 50000,
+      location: 'New York',
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  const job10 = await prisma.job.create({
+    data: {
+      title: 'Data Entry Clerk',
+      description: 'Enter and update data in computer systems',
+      salary: 40000,
+      location: 'Chicago',
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  const job11 = await prisma.job.create({
+    data: {
+      title: 'Marketing Assistant',
+      description: 'Support marketing campaigns and initiatives',
+      salary: 45000,
+      location: 'Los Angeles',
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  const job12 = await prisma.job.create({
+    data: {
+      title: 'Graphic Design Intern',
+      description: 'Assist with creating visual designs',
+      salary: 30000,
+      location: 'Seattle',
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  const job13 = await prisma.job.create({
+    data: {
+      title: 'HR Assistant',
+      description: 'Provide administrative support to HR department',
+      salary: 35000,
+      location: 'Austin',
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  const job14 = await prisma.job.create({
+    data: {
+      title: 'Sales Associate',
+      description: 'Assist with sales and customer interactions',
+      salary: 40000,
+      location: 'Miami',
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  console.log({ job8, job9, job10, job11, job12, job13, job14 });
+
+  const review1 = await prisma.companyReview.create({
+    data: {
+      title: 'Terrible work environment',
+      description: 'No support from management, high turnover rate',
+      rating: 1,
+      user: { connect: { id: sebas.id } },
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  const review2 = await prisma.companyReview.create({
+    data: {
+      title: 'Unfair treatment of employees',
+      description: 'No opportunities for growth, favoritism',
+      rating: 2,
+      user: { connect: { id: sebas.id } },
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  const review3 = await prisma.companyReview.create({
+    data: {
+      title: 'Toxic work culture',
+      description: 'Bullying and harassment, no work-life balance',
+      rating: 1,
+      user: { connect: { id: sebas.id } },
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  const review4 = await prisma.companyReview.create({
+    data: {
+      title: 'Poor management',
+      description: 'Lack of communication and leadership',
+      rating: 2,
+      user: { connect: { id: sebas.id } },
+      company: { connect: { id: company2.id } },
+    },
+  });
+
+  console.log({ review1, review2, review3, review4 });
+
+  console.log({ company2 });
+
   console.log({ companyReview2, companyReview3, companyReview4 });
 
   console.log({ company, companyReview });
