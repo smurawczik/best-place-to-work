@@ -148,7 +148,8 @@ async function main() {
 
   const companyReview = await prisma.companyReview.create({
     data: {
-      comment: 'Great Place to Work',
+      title: 'Great Place to Work',
+      description: 'I love working here',
       rating: 5,
       user: {
         connect: {
@@ -165,7 +166,8 @@ async function main() {
 
   const companyReview2 = await prisma.companyReview.create({
     data: {
-      comment: 'Amazing work environment',
+      title: 'Amazing work environment',
+      description: 'Great team and management',
       rating: 4,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company.id } },
@@ -174,7 +176,8 @@ async function main() {
 
   const companyReview3 = await prisma.companyReview.create({
     data: {
-      comment: 'Good company culture',
+      title: 'Good company culture',
+      description: 'Great benefits and work-life balance',
       rating: 3,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company.id } },
@@ -183,7 +186,8 @@ async function main() {
 
   const companyReview4 = await prisma.companyReview.create({
     data: {
-      comment: 'Needs improvement in management',
+      title: 'Needs improvement in management',
+      description: 'Lack of communication and transparency',
       rating: 2,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company.id } },

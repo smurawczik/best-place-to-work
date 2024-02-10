@@ -19,9 +19,7 @@ export class ReviewsService {
       },
     });
 
-    console.log({ avg });
-
-    return this.prisma.companyReview.findMany({
+    const reviews = await this.prisma.companyReview.findMany({
       take: 10,
       where: {
         companyId,
@@ -31,9 +29,15 @@ export class ReviewsService {
         createdAt: true,
         updatedAt: true,
         rating: true,
-        comment: true,
+        title: true,
+        description: true,
         company: true,
       },
     });
+
+    return {
+      rating: avg._avg.rating,
+      reviews,
+    };
   }
 }

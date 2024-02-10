@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../redux/store.hooks";
 import { reviewsAPI } from "../api/reviews";
-import { setReviewList } from "../redux/reviews/reviews.slice";
+import { setReviewData } from "../redux/reviews/reviews.slice";
 
 export const useGetCompanyReviews = (companyId?: string) => {
   const dispatch = useAppDispatch();
@@ -13,7 +13,7 @@ export const useGetCompanyReviews = (companyId?: string) => {
 
         const response = await reviewsAPI.getReviewsByCompany(companyId);
         if (response.status === 200) {
-          dispatch(setReviewList(response.data));
+          dispatch(setReviewData(response.data));
         }
       } catch (error) {
         console.error(error);

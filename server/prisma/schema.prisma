@@ -21,15 +21,16 @@ model User {
 }
 
 model CompanyReview {
-  id        String   @id @default(uuid())
-  rating    Float
-  comment   String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  company   Company  @relation(fields: [companyId], references: [id])
-  companyId String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
+  id          String   @id @default(uuid())
+  rating      Float
+  title       String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  company     Company  @relation(fields: [companyId], references: [id])
+  companyId   String
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
 }
 
 model Company {
