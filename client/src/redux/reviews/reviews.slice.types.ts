@@ -1,8 +1,18 @@
 import { Company } from "../jobs/jobs.slice.types";
 
-export type CompanyReviewsResponse = { rating: number; reviews: Review[] };
+export type ReviewResponse = {
+  company: CompanyReview;
+  rating: number;
+};
 
-export interface Review {
+export type ReviewsResponse = ReviewResponse[];
+
+export type CompanyReviewsResponse = {
+  rating: number;
+  reviews: CompanyReview[];
+};
+
+export interface CompanyReview {
   id: number;
   rating: number;
   title: string;
@@ -12,7 +22,8 @@ export interface Review {
 }
 
 export interface ReviewsState {
-  list: Review[];
+  companyReviews: CompanyReview[];
   companyRating: number | null;
   company: Company | null;
+  list: ReviewsResponse;
 }

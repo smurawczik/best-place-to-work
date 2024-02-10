@@ -12,7 +12,7 @@ export const Rating = () => {
   return (
     <Box display="flex" alignItems="end" gap={1} fontSize={20}>
       <Box lineHeight={1}>
-        company rating: <b>{rating}</b>
+        Overall score: <b>{rating}</b>
       </Box>
       {Array.from({ length: 5 }).map((_, index) =>
         index < roundedRating ? (

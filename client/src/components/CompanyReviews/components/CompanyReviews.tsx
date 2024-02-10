@@ -4,7 +4,7 @@ import { CompanyReview } from "./CompanyReview";
 import Box from "@mui/material/Box";
 
 export const CompanyReviews = () => {
-  const reviews = useAppSelector((state) => state.reviews.list);
+  const reviews = useAppSelector((state) => state.reviews.companyReviews);
 
   return (
     <Box pt={2}>

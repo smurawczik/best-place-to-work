@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../redux/store.hooks";
 import { reviewsAPI } from "../api/reviews";
-import { setReviewData } from "../redux/reviews/reviews.slice";
+import { cleanReviewData, setReviewData } from "../redux/reviews/reviews.slice";
 
 export const useGetCompanyReviews = (companyId?: string) => {
   const dispatch = useAppDispatch();
@@ -17,11 +17,13 @@ export const useGetCompanyReviews = (companyId?: string) => {
         }
       } catch (error) {
         console.error(error);
-      } finally {
-        // Do something
       }
     };
 
     fetchCompanyReviews();
+
+    return () => {
+      dispatch(cleanReviewData());
+    };
   }, [companyId, dispatch]);
 };

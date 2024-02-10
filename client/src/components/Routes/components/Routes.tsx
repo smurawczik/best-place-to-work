@@ -1,15 +1,16 @@
 import {
   BrowserRouter,
-  Route,
   Routes as BrowserRoutes,
+  Route,
 } from "react-router-dom";
+import { CompanyReviewsPage } from "../../../pages/CompanyReviewsPage/CompanyReviewsPage";
 import { HomePage } from "../../../pages/Home/HomePage";
-import { Layout } from "../../Layout/";
+import { JobPage } from "../../../pages/JobPage/JobPage";
 import { JobsPage } from "../../../pages/Jobs/JobsPage";
 import { LoginPage } from "../../../pages/Login/LoginPage";
 import { RegisterPage } from "../../../pages/Register/RegisterPage";
-import { JobPage } from "../../../pages/JobPage/JobPage";
-import { CompanyReviewsPage } from "../../../pages/CompanyReviewsPage/CompanyReviewsPage";
+import { ReviewsPage } from "../../../pages/Reviews/ReviewsPage";
+import { Layout } from "../../Layout/";
 
 export const Routes = () => {
   return (
@@ -19,6 +20,7 @@ export const Routes = () => {
           <Route index element={<HomePage />} />
           <Route path="jobs" element={<JobsPage />} />
           <Route path="jobs/:id" element={<JobPage />} />
+          <Route path="reviews/" element={<ReviewsPage />} />
           <Route path="reviews/:id" element={<CompanyReviewsPage />} />
         </Route>
         <Route path="login" element={<LoginPage />} />

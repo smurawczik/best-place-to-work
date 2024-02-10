@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Review } from "../../../redux/reviews/reviews.slice.types";
+import { CompanyReview as _CompanyReview } from "../../../redux/reviews/reviews.slice.types";
 import Grid from "@mui/material/Grid";
 import { Box, styled } from "@mui/material";
 import { format } from "date-fns/format";
@@ -12,7 +12,7 @@ const StyledReviewTitle = styled("h3")(({ theme }) => ({
   textOverflow: "ellipsis",
 }));
 
-export const CompanyReview: FC<{ review: Review }> = ({ review }) => {
+export const CompanyReview: FC<{ review: _CompanyReview }> = ({ review }) => {
   const formattedDate = format(
     new Date(review.createdAt),
     "MMMM dd, yyyy HH:mm"
@@ -26,7 +26,7 @@ export const CompanyReview: FC<{ review: Review }> = ({ review }) => {
         gap={1}
         p={2}
         border={2}
-        borderRadius={1}
+        borderRadius={2}
         borderColor="grey.300"
         sx={{
           cursor: "pointer",
