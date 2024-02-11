@@ -14,6 +14,9 @@ export const JobCard: FC<Job> = (job) => {
         flexGrow: 0.98,
         transition: "0.3s",
         borderRadius: 0,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
         ":hover": {
           cursor: "pointer",
           boxShadow: (theme) => theme.shadows[5],

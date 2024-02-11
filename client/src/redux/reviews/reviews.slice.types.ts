@@ -29,7 +29,7 @@ export type CompanyReviewTag = {
 };
 
 export interface CompanyReview {
-  id: number;
+  id: string;
   rating: number;
   title: string;
   description: string;
