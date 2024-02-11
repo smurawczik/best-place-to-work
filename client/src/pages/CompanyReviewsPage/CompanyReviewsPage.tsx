@@ -1,12 +1,12 @@
+import { FC } from "react";
 import { useParams } from "react-router-dom";
-import { useGetCompanyReviews } from "../../hooks/useGetCompanyReviews";
+import { CompanyReviewModal } from "../../components/CompanyReviewModal";
 import {
   CompanyHeader,
-  CompanyReviewModal,
   CompanyReviews,
   Rating,
 } from "../../components/CompanyReviews";
-import { FC } from "react";
+import { useGetCompanyReviews } from "../../hooks/useGetCompanyReviews";
 
 export const CompanyReviewsPage: FC<{ withModal?: boolean }> = ({
   withModal,

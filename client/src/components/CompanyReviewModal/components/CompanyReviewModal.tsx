@@ -1,8 +1,10 @@
 import { Star, ThumbDownOutlined, ThumbUpOutlined } from "@mui/icons-material";
-import { Box, Chip, Dialog, Typography } from "@mui/material";
+import { Box, Chip, Dialog, Grid, Typography } from "@mui/material";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../redux/store.hooks";
+import { ReviewCons } from "./ReviewCons";
+import { ReviewPros } from "./ReviewPros";
 
 export const CompanyReviewModal: FC<{ reviewId: string }> = ({ reviewId }) => {
   const navigate = useNavigate();
@@ -16,6 +18,8 @@ export const CompanyReviewModal: FC<{ reviewId: string }> = ({ reviewId }) => {
 
   const roundedRating = Math.floor(review.rating);
 
+  const hasConsOrPros =
+    review.companyReviewCons?.length || review.companyReviewPros?.length;
   return (
     <Dialog
       open
@@ -51,21 +55,19 @@ export const CompanyReviewModal: FC<{ reviewId: string }> = ({ reviewId }) => {
             )
           )}
         </Box>
-        <Typography>
-          <b>review</b>: {review.description}
-        </Typography>
-        <>
-          {review.companyReviewPros.length > 0 && <Typography>Pros</Typography>}
-          {review.companyReviewPros.map((pro) => (
-            <Typography key={pro.description}>{pro.description}</Typography>
-          ))}
-        </>
-        <>
-          {review.companyReviewCons.length > 0 && <Typography>Cons</Typography>}
-          {review.companyReviewCons.map((con) => (
-            <Typography key={con.description}>{con.description}</Typography>
-          ))}
-        </>
+        <Typography>{review.description}</Typography>
+        {hasConsOrPros ? (
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Typography variant="h6">Pros</Typography>
+              <ReviewPros pros={review.companyReviewPros} />
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h6">Cons</Typography>
+              <ReviewCons cons={review.companyReviewCons} />
+            </Grid>
+          </Grid>
+        ) : null}
         {review.recommend ? <ThumbUpOutlined /> : <ThumbDownOutlined />}
       </Box>
     </Dialog>
