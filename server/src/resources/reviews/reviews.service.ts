@@ -58,6 +58,27 @@ export class ReviewsService {
         title: true,
         description: true,
         company: true,
+        companyArea: {
+          select: {
+            name: true,
+          },
+        },
+        companyReviewCons: {
+          select: {
+            description: true,
+          },
+        },
+        companyReviewPros: {
+          select: {
+            description: true,
+          },
+        },
+        recommend: true,
+        companyReviewTags: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 

@@ -22,6 +22,10 @@ export const Routes = () => {
           <Route path="jobs/:id" element={<JobPage />} />
           <Route path="reviews/" element={<ReviewsPage />} />
           <Route path="reviews/:id" element={<CompanyReviewsPage />} />
+          <Route
+            path="reviews/:id/open/:reviewId"
+            element={<CompanyReviewsPage withModal />}
+          />
         </Route>
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />

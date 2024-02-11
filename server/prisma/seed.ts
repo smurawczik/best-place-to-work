@@ -151,6 +151,20 @@ async function main() {
       title: 'Great Place to Work',
       description: 'I love working here',
       rating: 5,
+      recommend: true,
+      companyReviewTags: {
+        create: [
+          {
+            name: 'Great Benefits',
+          },
+          {
+            name: 'Good Work-Life Balance',
+          },
+          {
+            name: 'Supportive Management',
+          },
+        ],
+      },
       user: {
         connect: {
           id: sebas.id,
@@ -169,6 +183,7 @@ async function main() {
       title: 'Amazing work environment',
       description: 'Great team and management',
       rating: 4,
+      recommend: true,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company.id } },
     },
@@ -179,6 +194,7 @@ async function main() {
       title: 'Good company culture',
       description: 'Great benefits and work-life balance',
       rating: 3,
+      recommend: true,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company.id } },
     },
@@ -189,6 +205,7 @@ async function main() {
       title: 'Needs improvement in management',
       description: 'Lack of communication and transparency',
       rating: 2,
+      recommend: false,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company.id } },
     },
@@ -283,6 +300,7 @@ async function main() {
       title: 'Terrible work environment',
       description: 'No support from management, high turnover rate',
       rating: 1,
+      recommend: false,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company2.id } },
     },
@@ -293,6 +311,7 @@ async function main() {
       title: 'Unfair treatment of employees',
       description: 'No opportunities for growth, favoritism',
       rating: 2,
+      recommend: false,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company2.id } },
     },
@@ -303,6 +322,12 @@ async function main() {
       title: 'Toxic work culture',
       description: 'Bullying and harassment, no work-life balance',
       rating: 1,
+      recommend: false,
+      companyArea: {
+        create: {
+          name: 'Work Culture',
+        },
+      },
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company2.id } },
     },
@@ -313,6 +338,17 @@ async function main() {
       title: 'Poor management',
       description: 'Lack of communication and leadership',
       rating: 2,
+      recommend: false,
+      companyReviewCons: {
+        create: [
+          {
+            description: 'Lack of Transparency',
+          },
+          {
+            description: 'Lack of Communication',
+          },
+        ],
+      },
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company2.id } },
     },

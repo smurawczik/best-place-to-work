@@ -1,8 +1,9 @@
+import { Box, styled } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { format } from "date-fns/format";
 import { FC } from "react";
 import { CompanyReview as _CompanyReview } from "../../../redux/reviews/reviews.slice.types";
-import Grid from "@mui/material/Grid";
-import { Box, styled } from "@mui/material";
-import { format } from "date-fns/format";
+import { LinkButton } from "../../UI/LinkButton";
 
 const StyledReviewTitle = styled("h3")(({ theme }) => ({
   margin: 0,
@@ -42,6 +43,15 @@ export const CompanyReview: FC<{ review: _CompanyReview }> = ({ review }) => {
         <small>
           posted on: <b>{formattedDate}</b>
         </small>
+        <LinkButton
+          variant="contained"
+          disableElevation
+          color="secondary"
+          size="small"
+          href={`/reviews/${review.company.id}/open/${review.id}`}
+        >
+          Read more
+        </LinkButton>
       </Box>
     </Grid>
   );

@@ -12,6 +12,22 @@ export type CompanyReviewsResponse = {
   reviews: CompanyReview[];
 };
 
+export type CompanyArea = {
+  name: string;
+} | null;
+
+export type CompanyReviewCon = {
+  description: string;
+};
+
+export type CompanyReviewPro = {
+  description: string;
+};
+
+export type CompanyReviewTag = {
+  name: string;
+};
+
 export interface CompanyReview {
   id: number;
   rating: number;
@@ -19,6 +35,11 @@ export interface CompanyReview {
   description: string;
   createdAt: string;
   company: Company;
+  companyArea: CompanyArea;
+  companyReviewCons: CompanyReviewCon[];
+  companyReviewPros: CompanyReviewPro[];
+  recommend: boolean;
+  companyReviewTags: CompanyReviewTag[];
 }
 
 export interface ReviewsState {
