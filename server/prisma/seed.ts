@@ -6,10 +6,10 @@ const prisma = new PrismaClient();
 async function main() {
   try {
     await prisma.job.deleteMany({});
-    await prisma.companyReview.deleteMany({});
-    await prisma.company.deleteMany({});
     await prisma.user.deleteMany({});
     await prisma.role.deleteMany({});
+    await prisma.company.deleteMany({});
+    await prisma.companyReview.deleteMany({});
   } catch (e) {
     console.error(e);
   }
@@ -186,6 +186,42 @@ async function main() {
       recommend: true,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company.id } },
+      companyReviewCons: {
+        create: [
+          {
+            description: 'Lack of Transparency',
+          },
+          {
+            description: 'Lack of Communication',
+          },
+        ],
+      },
+      companyReviewPros: {
+        create: [
+          {
+            description: 'Great Benefits',
+          },
+          {
+            description: 'Good Work-Life Balance',
+          },
+          {
+            description: 'Supportive Management',
+          },
+        ],
+      },
+      companyReviewTags: {
+        create: [
+          {
+            name: 'Great Benefits',
+          },
+          {
+            name: 'Good Work-Life Balance',
+          },
+          {
+            name: 'Supportive Management',
+          },
+        ],
+      },
     },
   });
 
@@ -197,6 +233,29 @@ async function main() {
       recommend: true,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company.id } },
+      companyReviewPros: {
+        create: [
+          {
+            description: 'Great Benefits',
+          },
+          {
+            description: 'Good Work-Life Balance',
+          },
+          {
+            description: 'Supportive Management',
+          },
+        ],
+      },
+      companyReviewTags: {
+        create: [
+          {
+            name: 'Great Benefits',
+          },
+          {
+            name: 'Supportive Management',
+          },
+        ],
+      },
     },
   });
 
@@ -208,6 +267,16 @@ async function main() {
       recommend: false,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company.id } },
+      companyReviewCons: {
+        create: [
+          {
+            description: 'Lack of Transparency',
+          },
+          {
+            description: 'Lack of Communication',
+          },
+        ],
+      },
     },
   });
 
@@ -303,6 +372,16 @@ async function main() {
       recommend: false,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company2.id } },
+      companyReviewCons: {
+        create: [
+          {
+            description: 'Lack of Transparency',
+          },
+          {
+            description: 'Lack of Communication',
+          },
+        ],
+      },
     },
   });
 
@@ -314,6 +393,16 @@ async function main() {
       recommend: false,
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company2.id } },
+      companyReviewCons: {
+        create: [
+          {
+            description: 'Lack of Transparency',
+          },
+          {
+            description: 'Lack of Communication',
+          },
+        ],
+      },
     },
   });
 
@@ -327,6 +416,16 @@ async function main() {
         create: {
           name: 'Work Culture',
         },
+      },
+      companyReviewCons: {
+        create: [
+          {
+            description: 'Lack of Transparency',
+          },
+          {
+            description: 'Lack of Communication',
+          },
+        ],
       },
       user: { connect: { id: sebas.id } },
       company: { connect: { id: company2.id } },

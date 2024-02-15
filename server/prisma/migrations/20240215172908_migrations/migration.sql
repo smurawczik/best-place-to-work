@@ -14,14 +14,48 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "CompanyReview" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "rating" INTEGER NOT NULL,
-    "comment" TEXT,
+    "rating" REAL NOT NULL,
+    "title" TEXT,
+    "description" TEXT,
+    "recommend" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
+    "companyAreaId" TEXT,
     "companyId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
+    CONSTRAINT "CompanyReview_companyAreaId_fkey" FOREIGN KEY ("companyAreaId") REFERENCES "CompanyArea" ("id") ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT "CompanyReview_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "Company" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "CompanyReview_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "CompanyReviewPros" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "description" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "companyReviewId" TEXT NOT NULL,
+    CONSTRAINT "CompanyReviewPros_companyReviewId_fkey" FOREIGN KEY ("companyReviewId") REFERENCES "CompanyReview" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "CompanyReviewCons" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "description" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "companyReviewId" TEXT NOT NULL,
+    CONSTRAINT "CompanyReviewCons_companyReviewId_fkey" FOREIGN KEY ("companyReviewId") REFERENCES "CompanyReview" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "CompanyReviewTags" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "companyReviewId" TEXT NOT NULL,
+    CONSTRAINT "CompanyReviewTags_companyReviewId_fkey" FOREIGN KEY ("companyReviewId") REFERENCES "CompanyReview" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -33,6 +67,14 @@ CREATE TABLE "Company" (
     "website" TEXT,
     "foundedYear" INTEGER,
     "employees" INTEGER,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "CompanyArea" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "name" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );
